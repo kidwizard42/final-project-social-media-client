@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import axios from 'axios'
+const localHostJavaBackend = "http://localhost:8080/";
 
 const PostGame = (props) => {
     const [user, setUser]=useState('')

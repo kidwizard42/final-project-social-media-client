@@ -2,7 +2,12 @@ import {useState, useEffect, useRef} from 'react'
 import axios from 'axios'
 import io from "socket.io-client"
 
+const herokuSiteSocket = "https://floating-reaches-19985.herokuapp.com/";
+const localhostSocket = "http://localhost:3003/";
+const localHostJavaBackend = "http://localhost:8080/";
+
 function Login(){
+
 
     const [username, setUsername] = useState('')
     const [msg, setMsg] = useState('')
@@ -42,7 +47,7 @@ function Login(){
 
     useEffect(
         () => {
-          socketRef.current = io.connect("http://localhost:3003")
+          socketRef.current = io.connect(herokuSiteSocket)
           socketRef.current.on("userNum", (num) => {
             setUserNum(num)
           })
