@@ -12,6 +12,7 @@ import '../App.css'
   
 //   render(Message, document.body);
 
+const herokuJavaBackend = "https://pacific-journey-81010.herokuapp.com/"
 
 
 const GuessingGame = () => {
@@ -47,7 +48,7 @@ const GuessingGame = () => {
     }
 
     const getLeaderboard = async() => {
-        const res =  await axios.get('http://localhost:8080/guessingGameTop',{
+        const res =  await axios.get(herokuJavaBackend+'guessingGameTop',{
         auth: {
             username: 'blah',
             password: 'blah'

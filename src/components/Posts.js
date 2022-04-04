@@ -2,6 +2,8 @@ import axios from "axios";
 import Edit from "./Edit"
 import React, { useEffect, useRef, useState } from "react"
 
+const herokuJavaBackend = "https://pacific-journey-81010.herokuapp.com/"
+
 const Posts = () => {
     const [allPosts, setAllPosts] = useState([])
     const [postUser, setPostUser] = useState('')
@@ -9,7 +11,7 @@ const Posts = () => {
     
     // const [editTodo, setEditTodo] = useState({ ...props.todo });
     const getPosts =  async () => {
-       const res =  await axios.get('http://localhost:8080/posts',{
+       const res =  await axios.get(herokuJavaBackend+'posts',{
         auth: {
             username: 'blah',
             password: 'blah'
@@ -19,7 +21,7 @@ const Posts = () => {
        setAllPosts(res.data.reverse())
     }
     const deletePost = async (id) => {
-      const res = await axios.delete('http://localhost:8080/posts/'+id,
+      const res = await axios.delete(herokuJavaBackend+'posts/'+id,
         {
             auth: {
                 username: 'blah',
@@ -38,7 +40,7 @@ const Posts = () => {
         
         console.log(edit);
         
-        const res = await axios.put('http://localhost:8080/posts/'+edit.id,edit,
+        const res = await axios.put(herokuJavaBackend+'posts/'+edit.id,edit,
         {
             auth: {
                 username: 'blah',
@@ -84,7 +86,7 @@ const Posts = () => {
     
     const submitPost = async (e) => {
         e.preventDefault()
-      const res = await axios.post('http://localhost:8080/posts',{
+      const res = await axios.post(herokuJavaBackend+'/posts',{
             post:postContent,
             poster:postUser
         },

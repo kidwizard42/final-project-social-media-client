@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import axios from 'axios'
 const localHostJavaBackend = "http://localhost:8080/";
+const herokuJavaBackend = "https://pacific-journey-81010.herokuapp.com/"
 
 const PostGame = (props) => {
     const [user, setUser]=useState('')
@@ -10,7 +11,7 @@ const PostGame = (props) => {
     }
 
     const getLeaderboard = async() => {
-        const res =  await axios.get('http://localhost:8080/'+props.post,{
+        const res =  await axios.get(herokuJavaBackend+props.post,{
         auth: {
             username: 'blah',
             password: 'blah'
@@ -21,7 +22,7 @@ const PostGame = (props) => {
     // NEED TO STORE SCORE IN PROPS SO YOU CAN PROGRAM DYNAMICALLY
     const submitScore = async(e) => {
         e.preventDefault()
-        const res =  await axios.post('http://localhost:8080/'+props.post,{
+        const res =  await axios.post(herokuJavaBackend+props.post,{
             username:user,
             score:props.score
         },{
