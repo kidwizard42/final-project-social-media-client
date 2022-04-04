@@ -9,7 +9,6 @@ const Posts = () => {
     const [postUser, setPostUser] = useState('')
     const [postContent, setPostContent] = useState('')
     
-    // const [editTodo, setEditTodo] = useState({ ...props.todo });
     const getPosts =  async () => {
        const res =  await axios.get(herokuJavaBackend+'posts',{
         auth: {
@@ -32,10 +31,7 @@ const Posts = () => {
         getPosts()
     }
    
-//         const handleChange = (event) => {
-//     setEditTodo({ ...editTodo, [event.target.name]: event.target.value });
-//     // console.log(editTodo.todo_choices);
-//   };
+
     const submitEditPost = async (edit) => {
         
         console.log(edit);
@@ -86,7 +82,7 @@ const Posts = () => {
     
     const submitPost = async (e) => {
         e.preventDefault()
-      const res = await axios.post(herokuJavaBackend+'/posts',{
+      const res = await axios.post(herokuJavaBackend+'posts',{
             post:postContent,
             poster:postUser
         },
