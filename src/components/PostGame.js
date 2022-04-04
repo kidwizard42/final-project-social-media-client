@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import axios from 'axios'
 const localHostJavaBackend = "http://localhost:8080/";
-const herokuJavaBackend = "https://pacific-journey-81010.herokuapp.com/"
+const herokuJavaBackend = "https://pacific-journey-81010.herokuapp.com/";
 
 const PostGame = (props) => {
     const [user, setUser]=useState('')
