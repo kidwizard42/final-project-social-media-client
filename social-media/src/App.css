@@ -1,8 +1,18 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
+.GuessingGame{
+  border:2px solid black;
+  
+}
+.leaderboard{
+  border: 2px solid pink;
+}
+.scoreSpan{
+  color:gold;
+  
+}
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +45,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
