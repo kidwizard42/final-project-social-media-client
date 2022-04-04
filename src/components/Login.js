@@ -2,7 +2,7 @@ import {useState, useEffect, useRef} from 'react'
 import axios from 'axios'
 import io from "socket.io-client"
 
-const herokuSiteSocket = "https://floating-reaches-19985.herokuapp.com/";
+const herokuSiteSocket = "https://floating-reaches-19985.herokuapp.com";
 const localhostSocket = "http://localhost:3003/";
 const localHostJavaBackend = "http://localhost:8080/";
 
