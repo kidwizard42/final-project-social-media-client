@@ -1,6 +1,7 @@
 import axios from "axios";
 import Edit from "./Edit"
 import React, { useEffect, useRef, useState } from "react"
+import '../App.css'
 
 const herokuJavaBackend = "https://pacific-journey-81010.herokuapp.com/"
 
@@ -8,6 +9,7 @@ const Posts = () => {
     const [allPosts, setAllPosts] = useState([])
     const [postUser, setPostUser] = useState('')
     const [postContent, setPostContent] = useState('')
+    
     
     const getPosts =  async () => {
        const res =  await axios.get(herokuJavaBackend+'posts',{
@@ -31,10 +33,11 @@ const Posts = () => {
         getPosts()
     }
    
+    
 
     const submitEditPost = async (edit) => {
         
-        console.log(edit);
+        // console.log(edit);
         
         const res = await axios.put(herokuJavaBackend+'posts/'+edit.id,edit,
         {
@@ -57,13 +60,15 @@ const Posts = () => {
             
             allPosts.map((postData, index) => {
            return(
-                <div key={index}>
+                <div className="seperatePost" key={index}>
                 <strong>{postData.poster}</strong> : <span> {postData.post}</span>
-                <button onClick={() => {
+                <button className="deleteBtn" onClick={() => {
                     deletePost(postData.id)
                 }}>Delete</button>
                 <div>
+                    
                     <Edit edit={postData} submitEditPost={submitEditPost}/>
+                   
                 </div>
                 </div>
             )
@@ -102,20 +107,19 @@ const Posts = () => {
        getPosts()
     },[])
 
-    return(
-        <div>
+    return(<>
+        <h3 className="makeAPostH2">Make a post</h3>
+        <div className="posts">
             <form onSubmit={submitPost}>
-              user:  <input onChange={handleChangePoster} required />
-              Post: <input onChange={handleChangePost} required />
-
-              
+                <div>user:  <input onChange={handleChangePoster} required /></div>
+              <div>Post: <input onChange={handleChangePost} required /></div>
+            
               <input type="submit" />
             </form>
 
         {renderPosts()}
-        bro
         </div>
-    )
+        </>)
 }
 
 export default Posts

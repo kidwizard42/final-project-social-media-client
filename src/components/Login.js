@@ -48,7 +48,7 @@ function Login(){
 
     useEffect(
         () => {
-          socketRef.current = io.connect(herokuSiteSocket)
+          socketRef.current = io.connect(localhostSocket)
           socketRef.current.on("userNum", (num) => {
             setUserNum(num)
           })
@@ -72,8 +72,9 @@ function Login(){
 //         })
 
 //   },[chat])
-    return(<>
-         <div>
+    return(
+         <div className='chat'>
+           <h3>Chat</h3>
             {renderChat()}
         <form onSubmit={onMsgSubmit}>
 
@@ -94,7 +95,7 @@ function Login(){
         </div>
         
     
-    </>)
+    )
 }
 
 

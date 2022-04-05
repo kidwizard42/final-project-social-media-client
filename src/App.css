@@ -1,48 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500&family=Poiret+One&display=swap');
+*{
+  box-sizing: border-box;
+}
+body{
+  /* background-color: #87f1ff; */
+  /* background-color: #F1FDFF; */
+  /* background-color: whitesmoke; */
+
+  color:#14213d;
+  font-family: 'Merriweather Sans', sans-serif;
+}
+input{
+  border:1px solid #222831;
+  border-radius: 20px;
+}
+input[type="submit"],button[type="submit"]{
+  cursor: pointer;
+  background-color: #FFD36E;
+  border:1px solid #222831;
+  border-radius: 20px;
+}
+
+h1{text-align: center;}
+.arc{
+  color:#F24A72;
+}
+.seperatePost{
+  margin-bottom: 3px;
+  padding:20px;
+  border:2px solid black;
+}
+.deleteBtn{
+  cursor: pointer;
+  border-radius: 20px;
+  background-color:#F24A72;
+  border: 2px solid white;
+}
+.deleteBtn:hover{
+  background-color: black;
+  color:#F24A72;
+  border: 2px solid red;
+}
+.posts{
+  margin-top: 5px;
+  height:800px;
+  overflow-y: scroll;
+}
+.social{
+  width:38%;
+  padding:10px;
+  
+}
+.leaderboard-and-social{
+  display: flex;
+}
+
+.chat{
+  border: 2px solid #222831;
+  padding: 1.25rem;
+  height: 350px;
+  overflow-y: scroll;
+}
+.makeAPostH2{
+  border-top: 2px solid black;
+}
 .App {
   text-align: center;
 }
+.editable{
+  cursor: pointer;
+}
+.editable:hover{
+  /* background-color: #222831; */
+  border: 2px solid black;
+  color:lawngreen;
+}
 .GuessingGame{
   border:2px solid black;
-  
+  text-align: center;
+}
+.middleStuff{
+  width:38%;
 }
 .leaderboard{
-  border: 2px solid pink;
+  border: 2px solid gray;
+  padding:12px;
 }
 .scoreSpan{
-  color:gold;
+  /* color:gold; */
+  border: 2px;
   
 }
-/* .App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Tic{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  padding:15px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */

@@ -54,14 +54,13 @@ const GuessingGame = () => {
             password: 'blah'
           }
        })
-    //    console.log(res.data)
        setLeaderBoardData(res.data)
     }
 
     const renderLeaderboard = () => {
        return leaderboardData.map((data, index) => {
            return (<div key={index}>
-               <div> <span className="usernameSpan"> {data.username}</span> ||
+               <div> <span className="usernameSpan"> {data.username}</span> <span> _______ </span>
                  <span className="scoreSpan">Guess Number: {data.score} </span></div>
            </div>)
        })
@@ -74,7 +73,7 @@ const GuessingGame = () => {
     return(
     <div className="GuessingGame">
         <div className="leaderboard">
-            <h3>LeaderBoard Top 15</h3>
+            <h3>Guessing Game LeaderBoard Top 15</h3>
             {renderLeaderboard()}
         </div>
 
