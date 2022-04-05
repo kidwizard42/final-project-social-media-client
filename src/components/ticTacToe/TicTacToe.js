@@ -16,11 +16,30 @@ const TicTacToe = () => {
         {value:"",num:8, isClicked:false}
     ])
 
-
     const clickedSpot = (newGameState) => {
         
         setGame(newGameState)
         setIsX(!isX)
+        if((game[0].value == game[1].value && game[1].value== game[2].value)   && game[0].value !== ""){
+            alert('you win!')
+        } else if ((game[3].value == game[4].value && game[4].value== game[5].value)   && game[3].value !== ""){
+            alert('you win!')
+        }else if ((game[6].value == game[7].value && game[7].value== game[8].value)   && game[6].value !== ""){
+            alert('you win!')
+        }else if ((game[0].value == game[4].value && game[4].value== game[8].value)   && game[0].value !== ""){
+            alert('you win!')
+        }else if ((game[0].value == game[3].value && game[3].value== game[6].value)   && game[0].value !== ""){
+            alert('you win!')
+        }else if ((game[2].value == game[5].value && game[5].value== game[8].value)   && game[2].value !== ""){
+            alert('you win!')
+        }else if ((game[1].value == game[4].value && game[4].value== game[7].value)   && game[1].value !== ""){
+            alert('you win!')
+        }else if ((game[6].value == game[4].value && game[4].value== game[2].value)   && game[2].value !== ""){
+            alert('you win!')
+        }
+
+
+        console.log(game)
         // renderGame()
     }
 

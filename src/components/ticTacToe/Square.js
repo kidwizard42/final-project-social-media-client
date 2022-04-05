@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 const Square = (props) => {
 const [value, setValue] = useState(props.value)
+let myValue = (props.value)
 // const [playerOption, setPlayerOption]= useState(props.playerValue)
 // const [isClicked, setIsClicked]=useState(props.isClicked)
 
@@ -12,21 +13,23 @@ const [value, setValue] = useState(props.value)
         }else{
             if(props.isX){
                 setValue('X')
+                myValue = "X"
                 // console.log(props.num)
             }else{
                 setValue('O')
+                myValue ="O"
                 // console.log(props.num)
             }
 
             let newGame = props.game
             newGame[props.num] = {
-                value:value,
+                value:myValue,
                 num:props.num, 
                 isClicked:true
             }
 
             await props.clickedSpot(newGame)
-            // console.log(newGame)
+            // console.log(myValue)
         }
     }
     
