@@ -48,7 +48,7 @@ function Login(){
 
     useEffect(
         () => {
-          socketRef.current = io.connect(localhostSocket)
+          socketRef.current = io.connect(herokuSiteSocket)
           socketRef.current.on("userNum", (num) => {
             setUserNum(num)
           })
