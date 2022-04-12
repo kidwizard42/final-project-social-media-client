@@ -16,7 +16,6 @@ function Login(){
     const socketRef = useRef()
     const [userNum, setUserNum] = useState(0)
 
-
     const handleChangeUsername = (e) => {
 		setUsername(e.target.value )
 	}
@@ -46,9 +45,13 @@ function Login(){
 		))
 	}
 
+  // useEffect(() => {
+  //   socketRef.current.once()
+  // },[])
+
     useEffect(
         () => {
-          socketRef.current = io.connect(herokuSiteSocket)
+          socketRef.current = io.connect(localhostSocket)
           socketRef.current.on("userNum", (num) => {
             setUserNum(num)
           })
@@ -72,6 +75,7 @@ function Login(){
 //         })
 
 //   },[chat])
+  
     return(
          <div className='chat'>
            <h3>Chat</h3>
@@ -93,6 +97,7 @@ function Login(){
         </form>
         Currently online: {userNum}
         </div>
+        
         
     
     )

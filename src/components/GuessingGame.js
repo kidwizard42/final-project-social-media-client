@@ -2,15 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import PostGame from "./PostGame"
 import axios from 'axios'
 import '../App.css'
-// import { render } from 'react-dom';
-// import FlashMessage from 'react-flash-message'
-// const Message = () => (
-//     <FlashMessage duration={5000}>
-//       <strong>I will disapper in 5 seconds!</strong>
-//     </FlashMessage>
-//   )
-  
-//   render(Message, document.body);
+
 
 const herokuJavaBackend = "https://pacific-journey-81010.herokuapp.com/"
 
@@ -22,6 +14,9 @@ const GuessingGame = () => {
     const [leaderboardData, setLeaderBoardData] = useState([])
     const [gameData, setGameData] = useState({})
     const [showGamePost,setShowGamePost] = useState(false)
+    const [guessMsg, setGuessMsg]=useState('')
+    // let guessMsg = 'ddd'
+    
     const newNumber= () => {
         alert('New Game New Number!')
         setNum( Math.ceil(Math.random()*10))
@@ -33,14 +28,20 @@ const GuessingGame = () => {
         e.preventDefault()
         setNumOfTries(int => int+1 )
         if(guess ==num){
-            alert('You win!!!')
+            // alert('You win!!!')
             setShowGamePost(true)
+            setGuessMsg("Game Over")
 
         }else if (guess < num){
             
-            alert("try higher")
+            // alert("try higher")
+            // guessMsg= "try higher"
+            setGuessMsg("try higher")
+            
         }else{
-            alert("try lower")
+            // alert("try lower")
+            // guessMsg= "try lower"
+            setGuessMsg("try lower")
         }
     }
     const updateGuess = (e) => {
@@ -65,6 +66,13 @@ const GuessingGame = () => {
            </div>)
        })
     }
+    const renderBoardMessage = () => {
+        return(
+            <div className="makeM">
+                {guessMsg}
+            </div>
+        )
+    }
 
     useEffect(() => {
         getLeaderboard()
@@ -75,6 +83,7 @@ const GuessingGame = () => {
         <div className="leaderboard">
             <h3>Guessing Game LeaderBoard Top 15</h3>
             {renderLeaderboard()}
+            {renderBoardMessage()}
         </div>
 
         <form onSubmit={checkGuess}>
@@ -83,7 +92,7 @@ const GuessingGame = () => {
 
         </form>
         <button onClick={newNumber}>Start/New Game</button>
-        Number of tries!{numOfTries}
+         Number of tries! {numOfTries}
 
         {showGamePost? <PostGame post={'guessingGame'} get={'guessingGameTop'} 
          score={numOfTries} getLeaderboard={getLeaderboard} renderLeaderboard={renderLeaderboard}/> : null}

@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from "react"
 import Square from './Square'
+import io from "socket.io-client"
 import './TicTacToe.css'
+
+const herokuSiteSocket = "https://floating-reaches-19985.herokuapp.com/";
+const localhostSocket = "http://localhost:3003/";
+const localHostJavaBackend = "http://localhost:8080/";
+const herokuJavaBackend = "https://pacific-journey-81010.herokuapp.com/"
 
 const TicTacToe = () => {
     const [isX, setIsX] = useState(true)
@@ -15,31 +21,32 @@ const TicTacToe = () => {
         {value:"",num:7, isClicked:false},
         {value:"",num:8, isClicked:false}
     ])
+    const socketRef = useRef()
+    const [room, setRoom] = useState("")
+    // const [ticTacGame, setTicTacGame] = useState({})
 
     const clickedSpot = (newGameState) => {
         
         setGame(newGameState)
         setIsX(!isX)
-        if((game[0].value == game[1].value && game[1].value== game[2].value)   && game[0].value !== ""){
+        if((game[0].value === game[1].value && game[1].value=== game[2].value)   && game[0].value !== ""){
             alert('you win!')
-        } else if ((game[3].value == game[4].value && game[4].value== game[5].value)   && game[3].value !== ""){
+        } else if ((game[3].value === game[4].value && game[4].value=== game[5].value)   && game[3].value !== ""){
             alert('you win!')
-        }else if ((game[6].value == game[7].value && game[7].value== game[8].value)   && game[6].value !== ""){
+        }else if ((game[6].value === game[7].value && game[7].value=== game[8].value)   && game[6].value !== ""){
             alert('you win!')
-        }else if ((game[0].value == game[4].value && game[4].value== game[8].value)   && game[0].value !== ""){
+        }else if ((game[0].value === game[4].value && game[4].value=== game[8].value)   && game[0].value !== ""){
             alert('you win!')
-        }else if ((game[0].value == game[3].value && game[3].value== game[6].value)   && game[0].value !== ""){
+        }else if ((game[0].value === game[3].value && game[3].value=== game[6].value)   && game[0].value !== ""){
             alert('you win!')
-        }else if ((game[2].value == game[5].value && game[5].value== game[8].value)   && game[2].value !== ""){
+        }else if ((game[2].value === game[5].value && game[5].value=== game[8].value)   && game[2].value !== ""){
             alert('you win!')
-        }else if ((game[1].value == game[4].value && game[4].value== game[7].value)   && game[1].value !== ""){
+        }else if ((game[1].value === game[4].value && game[4].value=== game[7].value)   && game[1].value !== ""){
             alert('you win!')
-        }else if ((game[6].value == game[4].value && game[4].value== game[2].value)   && game[2].value !== ""){
+        }else if ((game[6].value === game[4].value && game[4].value=== game[2].value)   && game[2].value !== ""){
             alert('you win!')
         }
-
-
-        console.log(game)
+        // console.log(game)
         // renderGame()
     }
 
@@ -75,7 +82,18 @@ const TicTacToe = () => {
             {value:"",num:8, isClicked:false}
         ])
         setIsX(true)
+        // console.log('hittttt')
         // renderGame()
+    }
+
+    const sendRoom = (e) => {
+        e.preventDefault()
+        socketRef.current = io.emit('joinRoom', "test")
+        
+    }
+
+    const handleChange = (e) => {
+        setRoom(e.target.value)
     }
 
     
@@ -91,6 +109,10 @@ const TicTacToe = () => {
                 
             {renderGame()}
             <button onClick={resetGame}>Restart</button>
+            <form onSubmit={sendRoom}>
+                <input onChange={handleChange}/>
+                <input type={'submit'}/>
+            </form>
 
             </div>
         

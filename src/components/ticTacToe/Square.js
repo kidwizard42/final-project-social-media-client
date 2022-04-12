@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 const Square = (props) => {
-const [value, setValue] = useState(props.value)
+// const [value, setValue] = useState(props.value)
+// let value = 
 let myValue = (props.value)
 // const [playerOption, setPlayerOption]= useState(props.playerValue)
 // const [isClicked, setIsClicked]=useState(props.isClicked)
@@ -12,11 +13,11 @@ let myValue = (props.value)
             // console.log(props.num)
         }else{
             if(props.isX){
-                setValue('X')
+                // setValue('X')
                 myValue = "X"
                 // console.log(props.num)
             }else{
-                setValue('O')
+                // setValue('O')
                 myValue ="O"
                 // console.log(props.num)
             }
@@ -35,7 +36,7 @@ let myValue = (props.value)
     
 return(
 <div onClick={handleClick}className="cell">
-    <span className="cellValue">{value}</span>
+    <span className="cellValue">{myValue}</span>
 </div>)
 }
 export default Square
