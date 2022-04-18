@@ -221,10 +221,10 @@ const TicTacToe = (props) => {
             <span className='black' >{gameStart ? `YOU LOSE!`: 'No game yet'}</span>
             <button onClick={resetGame}>Restart</button>
             <form onSubmit={sendRoom}>
-                <input onChange={handleChange} />
-                <input type={'submit'}/>
+                {/* <input onChange={handleChange} />
+                <input type={'submit'}/> */}
             </form> 
-            <span className='black'>Press restart, then type in a new room for a new game!</span>
+            <span className='black'>Press restart, then type in a NEW room for a new game!</span>
 
             </div> :  winner ?  
                 <div className="winner">
@@ -233,10 +233,10 @@ const TicTacToe = (props) => {
                 <span className='black' >{gameStart ? `YOU WIN! `: 'No game yet'}</span>
                 <button onClick={resetGame}>Restart</button>
                 <form onSubmit={sendRoom}>
-                    <input onChange={handleChange} />
-                    <input type={'submit'}/>
+                    {/* <input onChange={handleChange} />
+                    <input type={'submit'}/> */} 
                 </form> 
-                <span className='black'>Press restart, then type in a new room for a new game!</span>
+                <span className='black'>Press restart, then type in a NEW room for a new game!</span>
 
                 </div>
                 : <div className="canvas-tic-tac-toe">
