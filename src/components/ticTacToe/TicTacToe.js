@@ -213,6 +213,7 @@ const TicTacToe = (props) => {
 
     return(
         <>
+        
         {loser ?
             <div className="loser">
                 
@@ -223,7 +224,7 @@ const TicTacToe = (props) => {
                 <input onChange={handleChange} />
                 <input type={'submit'}/>
             </form> 
-            <span className='black'>Press submit again to start a game against the same opponent</span>
+            <span className='black'>Press restart, then type in a new room for a new game!</span>
 
             </div> :  winner ?  
                 <div className="winner">
@@ -235,16 +236,16 @@ const TicTacToe = (props) => {
                     <input onChange={handleChange} />
                     <input type={'submit'}/>
                 </form> 
-                <span className='black'>Press submit again to start a game against the same opponent</span>
+                <span className='black'>Press restart, then type in a new room for a new game!</span>
 
                 </div>
                 : <div className="canvas-tic-tac-toe">
                 
                 {renderGame()}
-                {gameStart ? `Game begins you are player ${playerValue}`: 'No game yet'}
-                <button onClick={resetGame}>Restart</button>
+                {gameStart ?  <span className='gameStatus'>Game begins you are player {playerValue}</span>: <span className='gameStatus'>NO GAME YET</span>}
+                {/* <button onClick={() => {}}>Restart</button> */}
                 <form onSubmit={sendRoom}>
-                    <input onChange={handleChange}/>
+                Type the same input for both players here: <input onChange={handleChange}/>
                     <input type={'submit'}/>
                 </form> 
                 

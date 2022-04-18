@@ -46,6 +46,11 @@
     color:black;
 }
 
+.gameStatus{
+    font-weight: bold;
+    padding:5px;
+}
+
 /* .canvas{
     display: flex;
 } */

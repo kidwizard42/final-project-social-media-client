@@ -36,12 +36,12 @@ const GuessingGame = () => {
             
             // alert("try higher")
             // guessMsg= "try higher"
-            setGuessMsg("try higher")
+            setGuessMsg("try a higher number")
             
         }else{
             // alert("try lower")
             // guessMsg= "try lower"
-            setGuessMsg("try lower")
+            setGuessMsg("try a lower number")
         }
     }
     const updateGuess = (e) => {
