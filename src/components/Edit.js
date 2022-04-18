@@ -19,8 +19,8 @@ const Edit = (props) => {
         <div >
             <span className="editable" onClick={editToggle}>EDIT</span>
         {hideEdit ? "" :<form onSubmit={submit}>
-        User: <input onChange={handleChangeEditPost} name="poster"  />
-        Post: <input onChange={handleChangeEditPost} name="post"  />   
+        User: <input onChange={handleChangeEditPost} name="poster"/>
+        Post: <input onChange={handleChangeEditPost} name="post" />   
         <input type="submit"/>  
         </form> }
         

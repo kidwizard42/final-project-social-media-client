@@ -3,10 +3,10 @@ import socketio from "socket.io-client";
 
 // import { SOCKET_URL } from "config";
 
-// const herokuSiteSocket = "https://floating-reaches-19985.herokuapp.com/";
+const herokuSiteSocket = "https://floating-reaches-19985.herokuapp.com/";
 // const localhostSocket = "http://localhost:3003/";
 
-export const socket = socketio.connect("http://localhost:3003/");
+export const socket = socketio.connect(herokuSiteSocket);
 export const SocketContext = React.createContext();
 
 // got this file from site below. did not use useCallback but i should learn how.
