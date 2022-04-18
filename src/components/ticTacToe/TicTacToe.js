@@ -1,15 +1,12 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, {useState, useContext, useCallback, useEffect, useRef} from 'react';
+import {SocketContext} from '../../context/socket'
 import Square from './Square'
-import io from "socket.io-client"
 import './TicTacToe.css'
 
-const herokuSiteSocket = "https://floating-reaches-19985.herokuapp.com/";
-const localhostSocket = "http://localhost:3003/";
-const localHostJavaBackend = "http://localhost:8080/";
-const herokuJavaBackend = "https://pacific-journey-81010.herokuapp.com/"
 
-const TicTacToe = () => {
-    const [isX, setIsX] = useState(true)
+const TicTacToe = (props) => {
+    // const [isX, setIsX] = useState(null)
+    const [playerValue, setPlayervalue] = useState('')
     const [game, setGame]= useState([
         {value:"",num:0, isClicked:false},
         {value:"",num:1, isClicked:false},
@@ -21,53 +18,124 @@ const TicTacToe = () => {
         {value:"",num:7, isClicked:false},
         {value:"",num:8, isClicked:false}
     ])
-    const socketRef = useRef()
     const [room, setRoom] = useState("")
+    const socket = useContext(SocketContext)
+    const [gameStart, setGameStart] = useState(false)
+    const [turn, setTurn] = useState(false)
+    const [loser ,setLoser] = useState(null)
+    const [winner, setWinner] = useState(null)
+    // ref to keep track of the submitted room. for the game
+    let roomSubmit = useRef()
+    // counter exists to get the component to rerender
+    const [counter, setCounter] = useState(0)
     // const [ticTacGame, setTicTacGame] = useState({})
 
-    const clickedSpot = (newGameState) => {
+    const clickedSpot =  (newGameState) => {
         
-        setGame(newGameState)
-        setIsX(!isX)
-        if((game[0].value === game[1].value && game[1].value=== game[2].value)   && game[0].value !== ""){
-            alert('you win!')
-        } else if ((game[3].value === game[4].value && game[4].value=== game[5].value)   && game[3].value !== ""){
-            alert('you win!')
-        }else if ((game[6].value === game[7].value && game[7].value=== game[8].value)   && game[6].value !== ""){
-            alert('you win!')
-        }else if ((game[0].value === game[4].value && game[4].value=== game[8].value)   && game[0].value !== ""){
-            alert('you win!')
-        }else if ((game[0].value === game[3].value && game[3].value=== game[6].value)   && game[0].value !== ""){
-            alert('you win!')
-        }else if ((game[2].value === game[5].value && game[5].value=== game[8].value)   && game[2].value !== ""){
-            alert('you win!')
-        }else if ((game[1].value === game[4].value && game[4].value=== game[7].value)   && game[1].value !== ""){
-            alert('you win!')
-        }else if ((game[6].value === game[4].value && game[4].value=== game[2].value)   && game[2].value !== ""){
-            alert('you win!')
-        }
-        // console.log(game)
-        // renderGame()
+        setGame(p => newGameState)
+        setTurn(false)
+        setCounter(prev => prev+1)
+        checkWin(newGameState)
     }
-
-   const renderGame= () => {
+   
+    const checkWin = (newGameState) => {
+        
        
+        if((game[0].value === game[1].value && game[1].value=== game[2].value) && game[0].value !== ""  ){
+            if(game[0].value == playerValue){
+                socket.emit('gameOver', roomSubmit.current, true, newGameState)
+            }else{
+                    console.log('you lose')
+                }
+        } else if ((game[3].value === game[4].value && game[4].value=== game[5].value) && game[3].value !== ""  ){
+            if(game[3].value == playerValue){
+                socket.emit('gameOver', roomSubmit.current, true, newGameState)
+                setWinner(true)
+            }else{
+                    socket.emit('gameOver', roomSubmit.current, false, newGameState)
+                    setLoser(true)
+                }
+        }else if ((game[6].value === game[7].value && game[7].value=== game[8].value) && game[6].value !== ""  ){
+            if(game[6].value == playerValue){
+                socket.emit('gameOver', roomSubmit.current, true, newGameState)
+                setWinner(true)
+            }else{
+                    socket.emit('gameOver', roomSubmit.current, false, newGameState)
+                    setLoser(true)
+                }
+        }else if ((game[0].value === game[4].value && game[4].value=== game[8].value) && game[0].value !== ""  ){
+            if(game[0].value == playerValue){
+                socket.emit('gameOver', roomSubmit.current, true, newGameState)
+                setWinner(true)
+            }else{
+                    socket.emit('gameOver', roomSubmit.current, false, newGameState)
+                    setLoser(true)
+                }
+        }else if ((game[0].value === game[3].value && game[3].value=== game[6].value) && game[0].value !== ""  ){
+            if(game[0].value == playerValue){
+                socket.emit('gameOver', roomSubmit.current, true, newGameState)
+                setWinner(true)
+            }else{
+                    socket.emit('gameOver', roomSubmit.current, false, newGameState)
+                    setLoser(true)
+                }
+        }else if ((game[2].value === game[5].value && game[5].value=== game[8].value) && game[2].value !== ""  ){
+            if(game[2].value == playerValue){
+                socket.emit('gameOver', roomSubmit.current, true, newGameState)
+                setWinner(true)
+            }else{
+                    socket.emit('gameOver', roomSubmit.current, false, newGameState)
+                    setLoser(true)
+                }
+        }else if ((game[1].value === game[4].value && game[4].value=== game[7].value) && game[1].value !== ""  ){
+            if(game[1].value == playerValue){
+                socket.emit('gameOver', roomSubmit.current, true, newGameState)
+                setWinner(true)
+            }else{
+                    socket.emit('gameOver', roomSubmit.current, false, newGameState)
+                    setLoser(true)
+                }
+        }else if ((game[6].value === game[4].value && game[4].value=== game[2].value) && game[6].value !== ""  ){
+            if(game[6].value == playerValue){
+                socket.emit('gameOver', roomSubmit.current, true, newGameState)
+                setWinner(true)
+            }else{
+                    socket.emit('gameOver', roomSubmit.current, false, newGameState)
+                    setLoser(true)
+                }
+        } else{
+            socket.emit('play', roomSubmit.current, newGameState)
+        }
+    }
+   const renderGame= () => {
+   
     return(
         
         game.map((g,i) => {
            return( 
             <div className="cell" key={i}>
-                <Square
+                {/* Nested ternary. if gamestart is true & turn is not show the squares but have a dummy function
+                ( click event). if gamestart and turn are true show squares and have the click function availible */}
+                {gameStart? turn?<Square
                 clickedSpot={clickedSpot}
                 num={g.num} 
                 value={g.value}
-                isX={isX}
+                playerValue={playerValue}
                 isClicked={g.isClicked}
-                game={game}/>  
+                game={game}/> : <Square
+                clickedSpot={() => {}}
+                num={g.num} 
+                value={g.value}
+                playerValue={playerValue}
+                isClicked={g.isClicked}
+                game={game}/>   : ""}
+                 
             </div>
            )
         })
-    )}
+    )
+   }
+
     
     const resetGame = () => {
         setGame([
@@ -81,40 +149,110 @@ const TicTacToe = () => {
             {value:"",num:7, isClicked:false},
             {value:"",num:8, isClicked:false}
         ])
-        setIsX(true)
-        // console.log('hittttt')
-        // renderGame()
+        // setRoom("")
+        setGameStart(false)
+        setTurn(false)
+        setLoser(null)
+        setWinner(null)
     }
 
     const sendRoom = (e) => {
         e.preventDefault()
-        socketRef.current = io.emit('joinRoom', "test")
-        
+        socket.emit('joinRoom', room)
+        roomSubmit.current = room
     }
 
     const handleChange = (e) => {
         setRoom(e.target.value)
     }
 
-    
+    useEffect(() => {
+        socket.on('res', (res) => {
+            console.log(res)
+        })
+        socket.on(`isReady`, (res, boolean) => {
+            setPlayervalue(res.player)
+            setGameStart(true)
+            setTurn(boolean)
+        })
+        socket.on('gameState',  (updatedGame) => {
+            setGame(updatedGame)
+            setTurn(true)
+            setCounter(prev => prev+1)   
+        })
 
-    // useEffect(() => {
-    //     renderGame()
-    // },[game])
+        socket.on('loser',  (updatedGame) => {
+            setGame(updatedGame)
+            setTurn(false)
+            setCounter(prev => prev+1) 
+            setLoser(true)
+        })
+
+        socket.on('winner',  (updatedGame) => {
+            setGame(updatedGame)
+            setTurn(false)
+            setCounter(prev => prev+1) 
+            setWinner(true)
+        })
+
+        return () => {
+            socket.off('res', (res) => {
+
+            })
+
+            socket.off(`isReady`,  (res) =>{
+                // setGameStart(false)
+            })
+
+            socket.off(`gameState`,  (res) =>{
+               
+            })
+        }
+       
+    },[])
 
     return(
         <>
-        {/* <h3>TicTacToe</h3> */}
-            <div className="canvas-tic-tac-toe">
+        {loser ?
+            <div className="loser">
                 
             {renderGame()}
+            <span className='black' >{gameStart ? `YOU LOSE!`: 'No game yet'}</span>
             <button onClick={resetGame}>Restart</button>
             <form onSubmit={sendRoom}>
-                <input onChange={handleChange}/>
+                <input onChange={handleChange} />
                 <input type={'submit'}/>
-            </form>
+            </form> 
+            <span className='black'>Press submit again to start a game against the same opponent</span>
 
-            </div>
+            </div> :  winner ?  
+                <div className="winner">
+                
+                {renderGame()}
+                <span className='black' >{gameStart ? `YOU WIN! `: 'No game yet'}</span>
+                <button onClick={resetGame}>Restart</button>
+                <form onSubmit={sendRoom}>
+                    <input onChange={handleChange} />
+                    <input type={'submit'}/>
+                </form> 
+                <span className='black'>Press submit again to start a game against the same opponent</span>
+
+                </div>
+                : <div className="canvas-tic-tac-toe">
+                
+                {renderGame()}
+                {gameStart ? `Game begins you are player ${playerValue}`: 'No game yet'}
+                <button onClick={resetGame}>Restart</button>
+                <form onSubmit={sendRoom}>
+                    <input onChange={handleChange}/>
+                    <input type={'submit'}/>
+                </form> 
+                
+    
+                </div>
+         } 
+        {/* <h3>TicTacToe</h3> */}
+          
         
         </>
     )

@@ -10,6 +10,24 @@
     /* align-items: center; */
     /* justify-content: center; */
 }
+
+
+.loser{
+    background-color: red;
+    width:300px;
+    height:300px;
+    display: flex;
+    flex-wrap: wrap;
+    color:white;
+  }
+  .winner{
+    background-color: green;
+    width:300px;
+    height:300px;
+    display: flex;
+    flex-wrap: wrap;
+    color:white;
+  }
 .cell{
     width:100px;
     height:100px;
@@ -24,6 +42,10 @@
     font-size: 105px;
     text-align: center;
 }
+.black{
+    color:black;
+}
+
 /* .canvas{
     display: flex;
 } */

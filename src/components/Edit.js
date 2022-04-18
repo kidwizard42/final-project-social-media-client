@@ -7,9 +7,10 @@ const Edit = (props) => {
         setEditPost({...editPost, [e.target.name]: e.target.value})
         
         }
-    const submit = (e) => {
+    const submit =  (e) => {
         e.preventDefault()
         props.submitEditPost(editPost)
+        setHideEdit(true)
     }
     const editToggle = () => {
         setHideEdit(!hideEdit)
@@ -18,9 +19,9 @@ const Edit = (props) => {
         <div >
             <span className="editable" onClick={editToggle}>EDIT</span>
         {hideEdit ? "" :<form onSubmit={submit}>
-        User: <input onChange={handleChangeEditPost} name="poster" value={editPost.poster} />
-        Post: <input onChange={handleChangeEditPost} name="post" value={editPost.post} />   
-        <input type={"submit"}/>  
+        User: <input onChange={handleChangeEditPost} name="poster"  />
+        Post: <input onChange={handleChangeEditPost} name="post"  />   
+        <input type="submit"/>  
         </form> }
         
         </div>

@@ -1,42 +1,34 @@
-import React, { useEffect, useRef, useState } from "react"
-const Square = (props) => {
-// const [value, setValue] = useState(props.value)
-// let value = 
-let myValue = (props.value)
-// const [playerOption, setPlayerOption]= useState(props.playerValue)
-// const [isClicked, setIsClicked]=useState(props.isClicked)
+import React, {useState, useContext, useCallback, useEffect} from 'react';
+import {SocketContext} from '../../context/socket';
 
-    const handleClick = async() => {
+const Square = (props) => {
+
+const socket = useContext(SocketContext);
+
+    const handleClick = async () => {
         // HAD STATE ON LINE 5 ORIGINALLY BUT USING STATE THERE
         //  NEVER HITS THE TRUE CONDITION. IDK WHY
+        // console.log('hit')
         if (props.isClicked){
             // console.log(props.num)
-        }else{
-            if(props.isX){
-                // setValue('X')
-                myValue = "X"
-                // console.log(props.num)
-            }else{
-                // setValue('O')
-                myValue ="O"
-                // console.log(props.num)
-            }
-
+        }else{  
+            // console.log(playerValue)
             let newGame = props.game
             newGame[props.num] = {
-                value:myValue,
+                value:props.playerValue,
                 num:props.num, 
                 isClicked:true
             }
-
-            await props.clickedSpot(newGame)
-            // console.log(myValue)
+             await props.clickedSpot(newGame)
+            // console.log(props.value)
+            
         }
     }
+
     
 return(
 <div onClick={handleClick}className="cell">
-    <span className="cellValue">{myValue}</span>
+    <span className="cellValue">{props.value}</span>
 </div>)
 }
 export default Square

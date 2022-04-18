@@ -18,9 +18,9 @@ const Posts = () => {
             password: 'blah'
           }
        })
-    //    console.log(res.data)
        setAllPosts(res.data.reverse())
     }
+
     const deletePost = async (id) => {
       const res = await axios.delete(herokuJavaBackend+'posts/'+id,
         {
@@ -33,7 +33,6 @@ const Posts = () => {
         getPosts()
     }
    
-    
 
     const submitEditPost = async (edit) => {
         
@@ -48,12 +47,8 @@ const Posts = () => {
            }
         )
         getPosts()
+        
     }
-
-    // const handleUpdate = async (edit) => {
-    //     const idk = await axios.put(herokuSite + "/" + edit.id, edit);
-    //     getTodos();
-    //   };
 
     const renderPosts = () => {
         return(
@@ -68,7 +63,7 @@ const Posts = () => {
                 <div>
                     
                     <Edit edit={postData} submitEditPost={submitEditPost}/>
-                   
+                     
                 </div>
                 </div>
             )
@@ -101,6 +96,7 @@ const Posts = () => {
 		setPostUser("")
         setPostContent("")
         getPosts()
+        // renderPosts()
     }
 
     useEffect( () => {
