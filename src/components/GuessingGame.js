@@ -86,12 +86,16 @@ const GuessingGame = () => {
     // },[])
     const loadingData = async()  => {
         const load = await getLeaderboard()
+        if(load.data){
+            setLoading(false)
+        }
+        
 
      }
 
     useEffect(  () => {
-         loadingData()
-         setLoading(false)
+        loadingData()
+         
     
        return () => {
     

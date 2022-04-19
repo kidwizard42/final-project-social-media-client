@@ -105,6 +105,7 @@ const Posts = () => {
 
     const loadingData = async()  => {
         const load = await getPosts()
+        setLoading(false)
 
     }
 
@@ -113,7 +114,7 @@ const Posts = () => {
        
         loadingData()
 
-        setLoading(false)
+        
 
       return () => {
 
