@@ -2,6 +2,7 @@ import React, {useState, useContext, useCallback, useEffect, useRef} from 'react
 import {SocketContext} from '../../context/socket'
 import Square from './Square'
 import './TicTacToe.css'
+import '../../App.css'
 
 
 const TicTacToe = (props) => {
@@ -24,6 +25,7 @@ const TicTacToe = (props) => {
     const [turn, setTurn] = useState(false)
     const [loser ,setLoser] = useState(null)
     const [winner, setWinner] = useState(null)
+
     // ref to keep track of the submitted room. for the game
     let roomSubmit = useRef()
     // counter exists to get the component to rerender

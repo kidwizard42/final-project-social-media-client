@@ -15,9 +15,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
-
-// import OnlineTicTacToe from './components/OnlineTicTacToe/GameBoard';
-
 const herokuSiteSocket = "https://floating-reaches-19985.herokuapp.com/";
 const localhostSocket = "http://localhost:3003/";
 const localHostJavaBackend = "http://localhost:8080/";

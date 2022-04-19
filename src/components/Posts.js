@@ -3,12 +3,16 @@ import Edit from "./Edit"
 import React, { useEffect, useRef, useState } from "react"
 import '../App.css'
 
+// loading screen
+import PacmanLoader from "react-spinners/PacmanLoader";
+
 const herokuJavaBackend = "https://pacific-journey-81010.herokuapp.com/"
 
 const Posts = () => {
     const [allPosts, setAllPosts] = useState([])
     const [postUser, setPostUser] = useState('')
     const [postContent, setPostContent] = useState('')
+    const [loading, setLoading] = useState(true)
     
     
     const getPosts =  async () => {
@@ -99,23 +103,47 @@ const Posts = () => {
         // renderPosts()
     }
 
-    useEffect( () => {
-       getPosts()
+    useEffect(  () => {
+
+       const loading = async()  => {
+            const load = await getPosts()
+
+        }
+        loading()
+
+        setLoading(false)
+
+      return () => {
+
+      }
+
+
     },[])
 
     return(<>
+        { loading? <div className="loadDiv">  <span>Loading...</span><PacmanLoader  size={30} /></div>
+                    :
+        <div>
         <h3 className="makeAPostH2">Make a post</h3>
         <div className="posts">
             <form onSubmit={submitPost}>
                 <div>user:  <input onChange={handleChangePoster} required /></div>
-              <div>Post: <input onChange={handleChangePost} required /></div>
+            <div>Post: <input onChange={handleChangePost} required /></div>
             
-              <input type="submit" />
+            <input type="submit" />
             </form>
 
         {renderPosts()}
         </div>
+        </div>
+
+
+        }
+
+        
         </>)
 }
+
+   
 
 export default Posts

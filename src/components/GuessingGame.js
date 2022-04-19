@@ -3,6 +3,9 @@ import PostGame from "./PostGame"
 import axios from 'axios'
 import '../App.css'
 
+// loading screen
+import PacmanLoader from "react-spinners/PacmanLoader";
+
 
 const herokuJavaBackend = "https://pacific-journey-81010.herokuapp.com/"
 
@@ -15,7 +18,10 @@ const GuessingGame = () => {
     const [gameData, setGameData] = useState({})
     const [showGamePost,setShowGamePost] = useState(false)
     const [guessMsg, setGuessMsg]=useState('')
-    // let guessMsg = 'ddd'
+    
+   const [loading, setLoading] = useState(true)
+   
+   
     
     const newNumber= () => {
         alert('New Game New Number!')
@@ -74,12 +80,29 @@ const GuessingGame = () => {
         )
     }
 
-    useEffect(() => {
-        getLeaderboard()
-    },[])
+    // useEffect(() => {
+    //     getLeaderboard()
+    // },[])
+
+    useEffect(  () => {
+
+        const loading = async()  => {
+            const load = await getLeaderboard()
+    
+         }
+         loading()
+         setLoading(false)
+    
+       return () => {
+    
+       }
+     },[])
 
     return(
-    <div className="GuessingGame">
+        <>
+        { loading? ""
+        :
+        <div className="GuessingGame">
         <div className="leaderboard">
             <h3>Guessing Game LeaderBoard Top 15</h3>
             {renderLeaderboard()}
@@ -97,6 +120,9 @@ const GuessingGame = () => {
         {showGamePost? <PostGame post={'guessingGame'} get={'guessingGameTop'} 
          score={numOfTries} getLeaderboard={getLeaderboard} renderLeaderboard={renderLeaderboard}/> : null}
     </div>
+     }
+     </>
+    
     )
 }
 export default GuessingGame

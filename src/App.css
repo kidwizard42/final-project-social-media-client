@@ -106,6 +106,17 @@ h1{text-align: center;}
   margin:5px;
   border-top: 1px solid gray;
 }
+.loadDiv{
+  /* background-color: #F24A72; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadDiv span{
+  font-size: 20px;
+  margin: 5px;
+}
 
 /* .overview{
   font-weight: bold;
