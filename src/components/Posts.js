@@ -103,13 +103,15 @@ const Posts = () => {
         // renderPosts()
     }
 
+    const loadingData = async()  => {
+        const load = await getPosts()
+
+    }
+
     useEffect(  () => {
 
-       const loading = async()  => {
-            const load = await getPosts()
-
-        }
-        loading()
+       
+        loadingData()
 
         setLoading(false)
 
