@@ -68,10 +68,10 @@ function App() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          IMPORTANT!!! If posts and leaderboard are NOT populated then
+          {/* IMPORTANT!!! If posts and leaderboard are NOT populated then
            please wait 30 seconds for the site to load. (heroku hosting default).
           <hr></hr>
-          <br></br>
+          <br></br> */}
 
           <Typography id="modal-modal-title" variant="h6" component="h2">
           TicTacToe:
@@ -84,6 +84,13 @@ function App() {
             will begin. Enjoy! <br></br>
             <hr></hr>
           </Typography>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          Posts:
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Full CRUD for posts using java/spring boot. Feel free to make your own or edit another
+          </Typography>
+          <hr></hr>
           <Typography id="modal-modal-title" variant="h6" component="h2">
           Chat:
           </Typography>
@@ -101,12 +108,7 @@ function App() {
             you can put your name and it will automatically update the leaderboard!
             <hr></hr>
           </Typography>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-          Posts:
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Full CRUD for posts using java/spring boot. Feel free to make your own or edit another
-          </Typography>
+          
         </Box>
       </Modal>
     </div>

@@ -28,6 +28,7 @@ const GuessingGame = () => {
         setNum( Math.ceil(Math.random()*10))
         setNumOfTries(0)
         setShowGamePost(false)
+        setGuessMsg("")
         // console.log(num)
     }
     const checkGuess = (e) => {
