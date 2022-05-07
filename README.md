@@ -17,7 +17,7 @@ App is deployed on heroku so the first run of the site can take up to 30 seconds
   A loading screen while the data on the java spring back end is fetched.
 
 ### ONLINE TIC TAC TOE
-  Two player ONLINE tic-tac-toe (two different computers, browers, tabs etc). Both players must enter the same room to play. Once two people are in a room the game will begin. The board is updated automatically on each move. You are unable to update the game board when it is not your turn. When one person wins the game the board both boards will update to refelect if they won or lost. 
+  Two player ONLINE tic-tac-toe (two different computers, browers, tabs etc). Both players must enter the same room to play. Once two people are in a room the game will begin. The board is updated automatically on each move. You are unable to update the game board when it is not your turn. When one person wins the game the board both boards will update to refelect if they won or lost.  See pictures below for reference.
   
   ### tic-tac-toe Game start
   ![](readme-pics/gamestart.png)
