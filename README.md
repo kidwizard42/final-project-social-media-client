@@ -1,7 +1,7 @@
 # READ ME
 
 
-## Entire project built by Darwood Antoine
+## Project built by Darwood Antoine
 
 ### OverView: 
 [ARC Arcade](https://murmuring-bayou-78293.herokuapp.com/). An app where people can play online games, instant message , make/edit/delete posts, and post high scores in games they've played.
